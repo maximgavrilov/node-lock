@@ -1,4 +1,42 @@
 node-lock
 =========
 
-Small node.js resource locker library
+Small node.js async resources locking library.
+
+Install
+=======
+
+To install the latest from the repository, run:
+
+    npm install git://github.com/maximgavrilov/node-lock.git
+
+
+Usage
+=====
+
+A simple example of transfering money between two persons:
+
+    var Lock = require('lock');
+    var lock = new Lock();
+
+    function transfer(sender, receiver, amount, next) {
+        lock.acquire([sender.id, receiver.id], function (err, lock) {
+            // so we have lock
+            db.change_money(sender, -amount, function (err) {
+                if (err) {
+                    lock.release();
+                    return next(err);
+                }
+                // ....
+                db.change_money(receiver, amount, function (err) {
+                    if (err) {
+                        lock.release();
+                        return next(err);
+                    }
+                    // ...
+                    lock.release();
+                    return next();
+                });
+            });
+        });
+    }

@@ -8,7 +8,7 @@ var Lock = (function () {
     };
 
     Lock.prototype.release = function() {
-        this.module.release(this);
+        this.module._release(this);
     };
 
     return Lock;
@@ -51,7 +51,7 @@ module.exports = (function () {
         });
     };
 
-    LockModule.prototype.release = function(lock) {
+    LockModule.prototype._release = function(lock) {
         var deffered = this.deffered;
 
         assert.ok(lock.keys.every(function (k) { return deffered[k];}));
