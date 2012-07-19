@@ -1,6 +1,6 @@
 {
   "name": "lock",
-  "description": "Small node.js resource locker library.",
+  "description": "Small node.js async resources locking library.",
   "version": "0.0.1",
   "repository": {
     "type": "git",
@@ -14,15 +14,26 @@
     "lib": ".",
     "test": "test"
   },
+  "scripts": {
+    "test" : "nodeunit test/"
+  },
   "devDependencies" : {
     "nodeunit": "0.7.4"
   },
-  "license": "MIT/X11",
+  "licenses": [
+    {
+      "type": "Apache License, Version 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
   "author": {
     "name": "Maxim Gavrilov",
-    "email": "maxim.gavrilov@gmail.com",
-    "url": "https://github.com/maximgavrilov"
+    "email": "maxim.gavrilov@gmail.com"
   },
-  "dependencies": {},
-  "optionalDependencies": {}
+  "contributors": [
+    {
+      "name" : "Anton Belyaev"
+    }
+  ],
+  "dependencies": {}
 }
