@@ -21,7 +21,11 @@ A simple example of transfering money between two persons:
 
     function transfer(sender, receiver, amount, next) {
         lock.acquire([sender.id, receiver.id], function (err, lock) {
-            // so we have lock
+            if (err) {
+                return next(err);
+            }
+
+            // now we have locks for sender and receiver
             db.change_money(sender, -amount, function (err) {
                 if (err) {
                     lock.release();
